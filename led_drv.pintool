@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ASCII"?>
+<device:XMLDevice xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:device="http://www.silabs.com/ss/hwconfig/document/device.ecore" name="pin_tool.MGM210L022JNF" partId="mcu.arm.efr32.mg21.mgm210l022jnf" contextId="com.silabs.sdk.stack.super:4.2.3._-1324792885">
+  <mode name="DefaultMode">
+    <property object="DefaultMode" propertyId="mode.diagramLocation" value="100, 100"/>
+    <property object="GPIO" propertyId="ABPeripheral.included" value="true"/>
+    <property object="PA03" propertyId="pin.name" value="LED_CH4"/>
+    <property object="PA03" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PA04" propertyId="pin.name" value="LED_CH3"/>
+    <property object="PA04" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PC03" propertyId="pin.name" value="VCC_SENSE"/>
+    <property object="PC04" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_SIMPLE_BUTTON_BTN1%T%sl_simple_button_btn1_config.h"/>
+    <property object="PC04" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PC05" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_SIMPLE_LED_LED0%T%sl_simple_led_led0_config.h"/>
+    <property object="PC05" propertyId="pin.name" value="LED_AUX"/>
+    <property object="PC05" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PD00" propertyId="pin.name" value="LED_CH1"/>
+    <property object="PD00" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PD01" propertyId="pin.name" value="LED_CH2"/>
+    <property object="PD01" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PORTIO" propertyId="portio.usart0.enable.rx" value="Enabled"/>
+    <property object="PORTIO" propertyId="portio.usart0.enable.tx" value="Enabled"/>
+    <property object="PORTIO" propertyId="portio.usart0.location.rx" value="33"/>
+    <property object="PORTIO" propertyId="portio.usart0.location.tx" value="32"/>
+    <property object="PTI" propertyId="ABPeripheral.included" value="true"/>
+    <property object="USART0" propertyId="ABModule.selectedRequirement" value="usart%T%SL_IOSTREAM_USART_VCOM%T%sl_iostream_usart_vcom_config.h"/>
+    <property object="USART0" propertyId="ABPeripheral.included" value="true"/>
+  </mode>
+  <modeTransition>
+    <property object="RESET &#x2192; DefaultMode" propertyId="modeTransition.source" value="RESET"/>
+    <property object="RESET &#x2192; DefaultMode" propertyId="modeTransition.target" value="DefaultMode"/>
+  </modeTransition>
+</device:XMLDevice>
