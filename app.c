@@ -17,6 +17,7 @@
  */
 
 #include "app/framework/include/af.h"
+#include "zigbee_app_framework_event.h"
 #include "sl_component_catalog.h"
 #include "zigbee_sleep_config.h"
 #include "network-creator.h"
@@ -153,7 +154,7 @@ uint8_t led_drv_active_fb_ep_get(void)
 
 void led_drv_exit_pairing(void)
 {
-    slxu_zigbee_event_set_delay_ms(&ctx.pairing_mode_exit_event, LED_DRV_PAIRING_EXIT_DELAY);
+    sl_zigbee_event_set_delay_ms(&ctx.pairing_mode_exit_event, LED_DRV_PAIRING_EXIT_DELAY);
 }
 
 /** @brief Stack Status
@@ -210,7 +211,7 @@ static void led_drv_pairing_exit_cb(sl_zigbee_event_t *event)
  */
 void emberAfMainInitCallback(void)
 {
-    slxu_zigbee_event_init(&ctx.pairing_mode_exit_event, led_drv_pairing_exit_cb);
+    sl_zigbee_event_init(&ctx.pairing_mode_exit_event, led_drv_pairing_exit_cb);
     led_channel_init();
     led_effect_init();
 
@@ -472,7 +473,7 @@ void emberAfOtaClientBootloadCallback(const EmberAfOtaImageId* id)
   uint32_t slot;
 
   if (EMBER_AF_OTA_STORAGE_SUCCESS
-      != emAfOtaStorageGetTagOffsetAndSize(id,
+      != sli_zigbee_af_ota_storage_get_tag_offset_and_size(id,
                                            OTA_TAG_UPGRADE_IMAGE,
                                            &offset,
                                            &endOffset))
@@ -487,7 +488,7 @@ void emberAfOtaClientBootloadCallback(const EmberAfOtaImageId* id)
   (void) emberSerialWaitSend(APP_SERIAL);
 
   // If we're using slots, we'll need to use a different set of APIs
-  slot = emAfOtaStorageGetSlot();
+  slot = sli_zigbee_af_ota_storage_get_slot();
 
   // These routines will NOT return unless we failed to launch the bootloader.
   if (INVALID_SLOT != slot)

@@ -20,6 +20,8 @@
 #include "dbg_log.h"
 #include "app.h"
 
+#include "zigbee_app_framework_event.h"
+
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
@@ -289,7 +291,7 @@ static void led_effect_start(LedChannel ch, LedEffect effect)
     LedEffectExecCtx *ctx = &led_effect_ctx.execution_ctx[ch];
 
     ctx->code = led_effects[effect];
-    slxu_zigbee_event_set_active(&ctx->led_effect_tick_event);
+    sl_zigbee_event_set_active(&ctx->led_effect_tick_event);
 }
 
 static void led_effect_next_instr(LedEffectExecCtx *ctx)
@@ -386,7 +388,7 @@ static void led_effect_tick_event_cb(sl_zigbee_event_t *event)
 
     if (delay != 0)
     {
-        slxu_zigbee_event_set_delay_ms(&ctx->led_effect_tick_event, delay);
+        sl_zigbee_event_set_delay_ms(&ctx->led_effect_tick_event, delay);
     }
     else
     {
@@ -410,7 +412,7 @@ void led_effect_init(void)
 {
     for (size_t i = 0; i < ARRAY_SIZE(led_effect_ctx.execution_ctx); i++)
     {
-        slxu_zigbee_event_init(&led_effect_ctx.execution_ctx[i].led_effect_tick_event,
+        sl_zigbee_event_init(&led_effect_ctx.execution_ctx[i].led_effect_tick_event,
                                led_effect_tick_event_cb);
     }
 
@@ -426,7 +428,7 @@ void led_effect_run(LedChannel ch, LedEffect effect, size_t count)
 
     LedEffectExecCtx *ctx = &led_effect_ctx.execution_ctx[ch];
 
-    slxu_zigbee_event_set_inactive(&ctx->led_effect_tick_event);
+    sl_zigbee_event_set_inactive(&ctx->led_effect_tick_event);
 
     if (effect == LedEffect_None)
     {

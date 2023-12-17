@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<device:XMLDevice xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:device="http://www.silabs.com/ss/hwconfig/document/device.ecore" name="pin_tool.MGM210L022JNF" partId="mcu.arm.efr32.mg21.mgm210l022jnf" contextId="com.silabs.sdk.stack.super:4.2.3._-1324792885">
+<device:XMLDevice xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:device="http://www.silabs.com/ss/hwconfig/document/device.ecore" name="pin_tool.MGM210L022JNF" partId="mcu.arm.efr32.mg21.mgm210l022jnf" contextId="com.silabs.sdk.stack.super:4.3.2._-660756964">
   <mode name="DefaultMode">
     <property object="DefaultMode" propertyId="mode.diagramLocation" value="100, 100"/>
     <property object="GPIO" propertyId="ABPeripheral.included" value="true"/>
@@ -22,7 +22,7 @@
     <property object="PORTIO" propertyId="portio.usart0.location.rx" value="33"/>
     <property object="PORTIO" propertyId="portio.usart0.location.tx" value="32"/>
     <property object="PTI" propertyId="ABPeripheral.included" value="true"/>
-    <property object="USART0" propertyId="ABModule.selectedRequirement" value="usart%T%SL_IOSTREAM_USART_VCOM%T%sl_iostream_usart_vcom_config.h"/>
+    <property object="USART0" propertyId="ABModule.selectedRequirement" value="usart%T%SL_IOSTREAM_USART_USART%T%sl_iostream_usart_usart_config.h"/>
     <property object="USART0" propertyId="ABPeripheral.included" value="true"/>
   </mode>
   <modeTransition>

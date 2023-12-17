@@ -18,6 +18,7 @@
 
 #include "button.h"
 #include "sl_simple_button_instances.h"
+#include "zigbee_app_framework_event.h"
 #include "global-callback.h"
 #include "binding-table.h"
 
@@ -31,9 +32,9 @@ static sl_zigbee_event_t long_press_event;
 static bool button_event_handled;
 static bool initialized = false;
 
-static void button_on_long_press(SLXU_INIT_ARG)
+static void button_on_long_press(sl_zigbee_event_t* ev)
 {
-    SLXU_INIT_UNUSED_ARG;
+    (void)ev;
 
     button_event_handled = true;
 
@@ -73,7 +74,7 @@ void sl_button_on_change(const sl_button_t *handle)
             return;
         }
 
-        slxu_zigbee_event_set_inactive(&long_press_event);
+        sl_zigbee_event_set_inactive(&long_press_event);
 
         last_press_ts = 0;
 
@@ -87,13 +88,13 @@ void sl_button_on_change(const sl_button_t *handle)
     else
     {
         last_press_ts = halCommonGetInt32uMillisecondTick();
-        slxu_zigbee_event_set_delay_ms(&long_press_event, BUTTON_LONG_PRESS_TIMEOUT);
+        sl_zigbee_event_set_delay_ms(&long_press_event, BUTTON_LONG_PRESS_TIMEOUT);
         button_event_handled = false;
     }
 }
 
 void button_init(void)
 {
-    slxu_zigbee_event_init(&long_press_event, button_on_long_press);
+    sl_zigbee_event_init(&long_press_event, button_on_long_press);
     initialized = true;
 }

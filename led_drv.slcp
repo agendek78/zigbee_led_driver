@@ -19,7 +19,7 @@ readme:
 source:
 - {path: main.c}
 - {path: app.c}
-sdk: {id: gecko_sdk, version: 4.2.3}
+sdk: {id: gecko_sdk, version: 4.3.2}
 toolchain_settings: []
 component:
 - {id: led}
@@ -27,15 +27,16 @@ component:
 - {id: slot_manager}
 - instance: [btn1]
   id: simple_button
+- {id: power_manager_deepsleep}
 - instance: [example]
   id: cli
 - {id: zigbee_network_creator_security}
 - {id: zigbee_application_bootloader}
 - {id: zigbee_binding_table}
+- {id: iostream_recommended_stream}
 - {id: zigbee_scenes}
 - {id: zigbee_gp}
 - {id: zigbee_zcl_framework_core}
-- {id: zigbee_debug_basic}
 - {id: zigbee_stack_diagnostics}
 - {id: zigbee_network_steering}
 - {id: zigbee_find_and_bind_target}
@@ -48,7 +49,7 @@ component:
 - {id: zigbee_ota_storage_simple}
 - {id: MGM210L022JNF}
 - {id: zigbee_green_power_client}
-- instance: [vcom]
+- instance: [usart]
   id: iostream_usart
 - {id: zigbee_scan_dispatch}
 - {id: zigbee_source_route}

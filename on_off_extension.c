@@ -21,6 +21,8 @@
 #include "app.h"
 #include "dbg_log.h"
 
+#include "zigbee_app_framework_event.h"
+
 #define ON_OFF_ACCEPT_ONLY_WHEN_ON      0x01
 
 typedef struct
@@ -187,7 +189,7 @@ static void on_off_extension_timed_state_update(uint16_t ep_id, bool dec_time)
 
     if (next_timeout != 0)
     {
-        slxu_zigbee_endpoint_event_set_delay_ms(ctx.event, ep_id, next_timeout);
+        sl_zigbee_endpoint_event_set_delay_ms(ctx.event, ep_id, next_timeout);
     }
 }
 
@@ -257,7 +259,7 @@ bool on_off_extension_handle_off(uint8_t ep_id, bool currentValue)
                                   CLUSTER_MASK_SERVER,
                                   (uint8_t*) &time, ZCL_INT16U_ATTRIBUTE_TYPE);
 
-            slxu_zigbee_event_set_inactive(&ctx.event[ep_id - 1]);
+            sl_zigbee_event_set_inactive(&ctx.event[ep_id - 1]);
 
             on_off_extension_timed_state_update(ep_id, false);
             break;
@@ -288,7 +290,7 @@ bool on_off_extension_handle_on(uint8_t ep_id, bool currentValue)
         {
             uint16_t time = 0;
 
-            slxu_zigbee_event_set_inactive(&ctx.event[ep_id - 1]);
+            sl_zigbee_event_set_inactive(&ctx.event[ep_id - 1]);
 
             emberAfWriteAttribute(ep_id,
                                   ZCL_ON_OFF_CLUSTER_ID,

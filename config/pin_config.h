@@ -72,12 +72,20 @@
 
 // $[USART0]
 // USART0 RX on PC01
+#ifndef USART0_RX_PORT                          
 #define USART0_RX_PORT                           gpioPortC
+#endif
+#ifndef USART0_RX_PIN                           
 #define USART0_RX_PIN                            1
+#endif
 
 // USART0 TX on PC00
+#ifndef USART0_TX_PORT                          
 #define USART0_TX_PORT                           gpioPortC
+#endif
+#ifndef USART0_TX_PIN                           
 #define USART0_TX_PIN                            0
+#endif
 
 // [USART0]$
 
@@ -109,25 +117,52 @@
 // [MODEM]$
 
 // $[CUSTOM_PIN_NAME]
+#ifndef LED_CH4_PORT                            
 #define LED_CH4_PORT                             gpioPortA
+#endif
+#ifndef LED_CH4_PIN                             
 #define LED_CH4_PIN                              3
+#endif
 
+#ifndef LED_CH3_PORT                            
 #define LED_CH3_PORT                             gpioPortA
+#endif
+#ifndef LED_CH3_PIN                             
 #define LED_CH3_PIN                              4
+#endif
 
+#ifndef VCC_SENSE_PORT                          
 #define VCC_SENSE_PORT                           gpioPortC
+#endif
+#ifndef VCC_SENSE_PIN                           
 #define VCC_SENSE_PIN                            3
+#endif
 
+#ifndef LED_AUX_PORT                            
 #define LED_AUX_PORT                             gpioPortC
+#endif
+#ifndef LED_AUX_PIN                             
 #define LED_AUX_PIN                              5
+#endif
 
+#ifndef LED_CH1_PORT                            
 #define LED_CH1_PORT                             gpioPortD
+#endif
+#ifndef LED_CH1_PIN                             
 #define LED_CH1_PIN                              0
+#endif
 
+#ifndef LED_CH2_PORT                            
 #define LED_CH2_PORT                             gpioPortD
+#endif
+#ifndef LED_CH2_PIN                             
 #define LED_CH2_PIN                              1
+#endif
 
 // [CUSTOM_PIN_NAME]$
 
 #endif // PIN_CONFIG_H
+
+// $[IADC0]
+// [IADC0]$
 
