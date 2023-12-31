@@ -204,34 +204,6 @@ static void on_off_extension_channel_event_cb(uint8_t ep_id)
     on_off_extension_timed_state_update(ep_id, true);
 }
 
-void emberAfPluginLevelControlTransitionFinishedCallback(uint8_t endpoint)
-{
-    DBG_LOG("Transition complete for ep %d", endpoint);
-
-    uint8_t ch = endpoint - 1;
-
-    if (ctx.state[ch] == OnOffState_Off ||
-        ctx.state[ch] == OnOffState_DelayedOff)
-    {
-        led_channel_zcl_level_set(endpoint - 1, 0);
-    }
-    else
-    {
-        uint8_t current_level = 0;
-        EmberAfStatus status = emberAfReadServerAttribute(endpoint,
-                                            ZCL_LEVEL_CONTROL_CLUSTER_ID,
-                                            ZCL_CURRENT_LEVEL_ATTRIBUTE_ID,
-                                            &current_level, sizeof(current_level));
-        if (status != EMBER_ZCL_STATUS_SUCCESS)
-        {
-            DBG_LOG("Error reading current level!");
-            return;
-        }
-
-        led_channel_zcl_level_set(endpoint - 1, current_level);
-    }
-}
-
 bool on_off_extension_handle_off(uint8_t ep_id, bool currentValue)
 {
     OnOffState ch_state = ctx.state[ep_id - 1];
@@ -431,7 +403,15 @@ void on_off_extension_init(void)
                              (uint8_t*) &currentValue, sizeof(currentValue),
                              NULL);
 
-        ctx.state[i] = (currentValue != 0) ? OnOffState_On : OnOffState_Off;
+        if (currentValue != 0)
+        {
+          ctx.state[i] = OnOffState_On;
+          emberAfOnOffClusterLevelControlEffectCallback(i + 1, true);
+        }
+        else
+        {
+          ctx.state[i] = OnOffState_Off;
+        }
         sl_zigbee_endpoint_event_init(&ctx.event[i], on_off_extension_channel_event_cb, i + 1);
     }
 

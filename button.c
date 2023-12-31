@@ -21,6 +21,7 @@
 #include "zigbee_app_framework_event.h"
 #include "global-callback.h"
 #include "binding-table.h"
+#include "attribute-storage.h"
 
 #include "dbg_log.h"
 #include "app.h"
@@ -50,6 +51,12 @@ static void button_on_long_press(sl_zigbee_event_t* ev)
 
        EmberStatus eb_s = emberClearBindingTable();
        DBG_LOG("Binding table clear with status %02x!", eb_s);
+
+       /* restore default attribute values */
+       for(uint8_t ep = 1; ep <= APP_EP_COUNT; ep++)
+       {
+         sli_zigbee_af_load_attribute_defaults(ep, true);
+       }
     }
 
     led_drv_reboot_set();

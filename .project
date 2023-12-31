@@ -3656,16 +3656,6 @@
 			<location>/home/andy/SimplicityStudio/SDKs/gecko_sdk_2/protocol/zigbee/app/framework/plugin/identify/identify.h</location>
 		</link>
 		<link>
-			<name>gecko_sdk_4.3.2/protocol/zigbee/app/framework/plugin/level-control/level-control-cb.c</name>
-			<type>1</type>
-			<location>/home/andy/SimplicityStudio/SDKs/gecko_sdk_2/protocol/zigbee/app/framework/plugin/level-control/level-control-cb.c</location>
-		</link>
-		<link>
-			<name>gecko_sdk_4.3.2/protocol/zigbee/app/framework/plugin/level-control/level-control.h</name>
-			<type>1</type>
-			<location>/home/andy/SimplicityStudio/SDKs/gecko_sdk_2/protocol/zigbee/app/framework/plugin/level-control/level-control.h</location>
-		</link>
-		<link>
 			<name>gecko_sdk_4.3.2/protocol/zigbee/app/framework/plugin/network-creator/network-creator-cb.c</name>
 			<type>1</type>
 			<location>/home/andy/SimplicityStudio/SDKs/gecko_sdk_2/protocol/zigbee/app/framework/plugin/network-creator/network-creator-cb.c</location>

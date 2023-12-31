@@ -283,78 +283,6 @@ void emberAfPluginNetworkCreatorCompleteCallback(const EmberNetworkParameters *n
     DBG_LOG("Form Network Complete!");
 }
 
-void level_attribute_written(uint8_t endpoint, EmberAfAttributeId attributeId,
-                             uint8_t size, uint8_t *value)
-{
-    switch(attributeId)
-    {
-        case ZCL_CURRENT_LEVEL_ATTRIBUTE_ID:
-        {
-#if defined(DEBUG)
-            DBG_LOG("level set to %d", *value);
-#endif
-            break;
-        }
-        case ZCL_LEVEL_CONTROL_REMAINING_TIME_ATTRIBUTE_ID:
-        {
-            EmberAfStatus status = 0;
-            uint16_t* time_remaining = (uint16_t*)value;
-#if defined(DEBUG)
-            DBG_LOG("write time remain %d", *time_remaining);
-#endif
-            if (*time_remaining == 0x0000)
-            {
-                /* transition finished */
-                OnOffState on_off_state = on_off_extension_state_get(endpoint);
-
-                if (on_off_state == OnOffState_Off ||
-                    on_off_state == OnOffState_DelayedOff)
-                {
-                    DBG_LOG("transition finished, set OFF");
-                    led_channel_zcl_level_set(endpoint - 1, 0);
-                }
-                else
-                {
-                    uint8_t current_level = 0;
-                    status = emberAfReadServerAttribute(endpoint,
-                                                        ZCL_LEVEL_CONTROL_CLUSTER_ID,
-                                                        ZCL_CURRENT_LEVEL_ATTRIBUTE_ID,
-                                                        &current_level, sizeof(current_level));
-                    if (status != EMBER_ZCL_STATUS_SUCCESS)
-                    {
-                        DBG_LOG("Error reading current level!");
-                        return;
-                    }
-
-                    led_channel_zcl_level_set(endpoint - 1, current_level);
-                }
-
-                level_extension_current_level_save(endpoint);
-            }
-            else
-            {
-                uint8_t current_level = 0;
-                status = emberAfReadServerAttribute(endpoint,
-                                                    ZCL_LEVEL_CONTROL_CLUSTER_ID,
-                                                    ZCL_CURRENT_LEVEL_ATTRIBUTE_ID,
-                                                    &current_level, sizeof(current_level));
-                if (status != EMBER_ZCL_STATUS_SUCCESS)
-                {
-                    DBG_LOG("Error reading current level!");
-                    return;
-                }
-
-                led_channel_zcl_level_set(endpoint - 1, current_level);
-            }
-            break;
-        }
-        default:
-        {
-            break;
-        }
-    }
-
-}
 
 /** @brief Post Attribute Change
  *
@@ -374,11 +302,6 @@ void emberAfPostAttributeChangeCallback(uint8_t endpoint, EmberAfClusterId clust
             case ZCL_ON_OFF_CLUSTER_ID:
             {
                 on_off_attribute_written(endpoint, attributeId, size, value);
-                break;
-            }
-            case ZCL_LEVEL_CONTROL_CLUSTER_ID:
-            {
-                level_attribute_written(endpoint, attributeId, size, value);
                 break;
             }
             default:

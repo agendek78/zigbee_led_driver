@@ -21,12 +21,14 @@
 #include "af.h"
 #include "app.h"
 #include "on_off_extension.h"
+#include "level_extension.h"
 #include "identify_extension.h"
 
 const sl_service_function_entry_t zcl_extension_items[] =
 {
     { SL_SERVICE_FUNCTION_TYPE_ZCL_COMMAND, ZCL_IDENTIFY_CLUSTER_ID, (NOT_MFG_SPECIFIC | (SL_CLUSTER_SERVICE_SIDE_SERVER << 16)), identify_extension_handle_cmd },
     { SL_SERVICE_FUNCTION_TYPE_ZCL_COMMAND, ZCL_ON_OFF_CLUSTER_ID, (NOT_MFG_SPECIFIC | (SL_CLUSTER_SERVICE_SIDE_SERVER << 16)), on_off_extension_handle_cmd },
+    { SL_SERVICE_FUNCTION_TYPE_ZCL_COMMAND, ZCL_LEVEL_CONTROL_CLUSTER_ID, (NOT_MFG_SPECIFIC | (SL_CLUSTER_SERVICE_SIDE_SERVER << 16)), level_extension_handle_cmd },
 };
 
 static sl_service_function_block_t zcl_extension_block[] =
@@ -40,5 +42,6 @@ void zcl_extension_init(void)
 {
     sl_service_function_register_block(zcl_extension_block);
 
+    level_extension_init();
     on_off_extension_init();
 }

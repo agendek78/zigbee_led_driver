@@ -25,9 +25,9 @@ component:
 - {id: led}
 - {id: zigbee_ota_client}
 - {id: slot_manager}
+- {id: power_manager_deepsleep}
 - instance: [btn1]
   id: simple_button
-- {id: power_manager_deepsleep}
 - instance: [example]
   id: cli
 - {id: zigbee_network_creator_security}
@@ -40,7 +40,6 @@ component:
 - {id: zigbee_stack_diagnostics}
 - {id: zigbee_network_steering}
 - {id: zigbee_find_and_bind_target}
-- {id: zigbee_level_control}
 - {id: zigbee_identify}
 - {id: zigbee_counters}
 - {id: zigbee_green_power_common}

@@ -24,7 +24,7 @@
 #define APP_EP_COUNT                4
 
 #define EMBER_AF_IMAGE_TYPE_ID              0x1000
-#define EMBER_AF_CUSTOM_FIRMWARE_VERSION    0x01020000
+#define EMBER_AF_CUSTOM_FIRMWARE_VERSION    0x01030000
 
 #define ARRAY_SIZE(arr) (size_t)(sizeof(arr) / sizeof((arr)[0]))
 

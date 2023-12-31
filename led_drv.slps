@@ -11,5 +11,6 @@
     <properties key="universalConfig.projectTypeIds" value="com.silabs.ss.framework.ide.project.core.cdtMbsProjectType"/>
     <properties key="projectCommon.importModeId" value="LINK_LIBRARIES"/>
     <properties key="universalConfig.relativeWorkspacePath" value="../led_drv.slcw"/>
+    <properties key="universalConfig.incrementalOverwriteConfigs" value="false"/>
   </descriptors>
 </model:MDescriptors>

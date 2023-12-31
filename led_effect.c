@@ -428,6 +428,13 @@ void led_effect_run(LedChannel ch, LedEffect effect, size_t count)
 
     LedEffectExecCtx *ctx = &led_effect_ctx.execution_ctx[ch];
 
+    if (ctx->infinite_effect == LedEffect_None &&
+        ctx->iterative_effect == LedEffect_None &&
+        effect == LedEffect_None)
+    {
+      return;
+    }
+
     sl_zigbee_event_set_inactive(&ctx->led_effect_tick_event);
 
     if (effect == LedEffect_None)

@@ -22,7 +22,10 @@
 #include <stdarg.h>
 #include "app/framework/include/af.h"
 
+#ifdef DEBUG
 #define DBG_LOG(x, ...) sl_zigbee_app_debug_print(x "\n", ## __VA_ARGS__)
-
+#else
+#define DBG_LOG(x, ...)
+#endif
 
 #endif /* DBG_LOG_H_ */

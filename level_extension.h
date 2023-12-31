@@ -19,8 +19,22 @@
 #ifndef LEVEL_EXTENSION_H_
 #define LEVEL_EXTENSION_H_
 
-#include <stdint.h>
+#include "app/framework/include/af.h"
+#include "sl_service_function.h"
 
-void level_extension_current_level_save(uint8_t endpoint);
+#include <stdint.h>
+#include <stdbool.h>
+
+#define EMBER_AF_PLUGIN_LEVEL_CONTROL_MINIMUM_LEVEL   (1)
+#define EMBER_AF_PLUGIN_LEVEL_CONTROL_MAXIMUM_LEVEL   (254)
+
+void level_extension_init(void);
+
+uint32_t level_extension_handle_cmd(sl_service_opcode_t opcode,
+                                    sl_service_function_context_t *context);
+
+void level_extension_do_transition(uint8_t ep_id, uint8_t target_level,
+                                   uint16_t transition_time, bool with_attribute_update,
+                                   bool with_onoff);
 
 #endif /* LEVEL_EXTENSION_H_ */

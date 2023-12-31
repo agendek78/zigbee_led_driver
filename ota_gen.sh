@@ -18,8 +18,13 @@
  
 eval $(sed -n 's/^#define EMBER_AF_*\([^ ]*\)  *\(.*\) *$/export \1=\2/p' app.h)
 
-APP_NAME=LedDrv
-OUT_DIR="./Release"
+APP_NAME=led_drv
+
+if [ -z "$1" ]; then
+ OUT_DIR="./Release"
+else
+ OUT_DIR="$1"
+fi
 
 (cd "$OUT_DIR";
 /opt/SimplicityStudio_v5/developer/adapter_packs/commander/commander gbl create $APP_NAME.gbl --app $APP_NAME.s37;
